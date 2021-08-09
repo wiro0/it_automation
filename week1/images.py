@@ -21,8 +21,7 @@ if not os.path.isdir("/opt/icons"):
 os.chdir(image_dir)
 dir_content = os.listdir()
 
-# Iterate through all content in the image directory and manipulate all files with
-# the matching extension.
+# Iterate through the files in the directory, process and store as new files
 for item in dir_content:
     if os.path.isfile(item) and not item.startswith("."):
         print("Processing image:", item)
