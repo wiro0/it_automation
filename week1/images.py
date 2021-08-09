@@ -8,16 +8,14 @@ import os
 from PIL import Image
 
 # The source image directory
-image_dir = "/home/user/images"
+image_dir = "/home/pi/git/it_automation/week1/images"
 
-# The extension of the target images
-old_extension = ".tiff"
-new_extension = ".jpeg"
+new_extension = ".jpg"
 
 # Create directory for the modified images if it does not exist
-if not os.path.isdir("/opt/images"):
+if not os.path.isdir("/opt/icons"):
     os.chdir("/opt")
-    os.mkdir("images")
+    os.mkdir("icons")
 
 # Create a list of all files in the image directory
 os.chdir(image_dir)
@@ -26,10 +24,11 @@ dir_content = os.listdir()
 # Iterate through all content in the image directory and manipulate all files with
 # the matching extension.
 for item in dir_content:
-    if os.path.isfile(item) and item.endswith(old_extension):
+    if os.path.isfile(item) and not item.startswith("."):
         print("Processing image:", item)
         im = Image.open(item)
-        
+        im = im.rotate(90).resize((128,128)).convert("RGB")
+
         # Create new filename by splitting, splicing old extension and appending the new one
-        new_name = "".join(item.split(".")[:-1]) + new_extension
-        im.rotate(90).resize((128,128)).save(os.path.join("/opt/images", new_name))
+        new_name = os.path.splitext(item)[0] + new_extension
+        im.save(os.path.join("/opt/icons", new_name))
