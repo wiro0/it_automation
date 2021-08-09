@@ -9,7 +9,7 @@ import re
 from PIL import Image
 
 # The source image directory
-image_dir = "/home/test/images"
+image_dir = "/home/user/images"
 
 # The extension of the target images
 extension = ".jpg"
@@ -26,7 +26,7 @@ dir_content = os.listdir()
 # Iterate through all files in the image directory and manipulate all files with
 # the matching extension.
 for item in dir_content:
-    if os.isfile(item) and item.endswith(extension):
+    if os.path.isfile(item) and item.endswith(extension):
         print("Processing image:", item)
         im = Image.open(item)
         im.rotate(90).resize((640,480)).save(os.path.join("/opt/images", item))
