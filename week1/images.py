@@ -20,6 +20,6 @@ files = os.listdir()
 # matching images
 for item in files:
     if os.isfile(item) and item.endswith(".jpg"):
-        print(item)
+        print("Processing image:", item)
         im = Image.open(item)
         im.rotate(90).resize((640,480)).save(os.path.join("/opt/images", item))
