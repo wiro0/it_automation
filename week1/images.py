@@ -29,6 +29,5 @@ for item in dir_content:
         im = Image.open(item)
         im = im.rotate(90).resize((128,128)).convert("RGB")
 
-        # Create new filename by splitting, splicing old extension and appending the new one
         new_name = os.path.splitext(item)[0] + new_extension
         im.save(os.path.join("/opt/icons", new_name))
