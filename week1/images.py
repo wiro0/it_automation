@@ -5,7 +5,7 @@ import re
 from PIL import Image
 
 # The image directory
-image_dir = "/home/pi/git/it_automation/images"
+image_dir = "/home/test/images"
 
 # Create directory for the modified images if it does not exist
 if not os.path.isdir("/opt/images"):
