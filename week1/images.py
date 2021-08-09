@@ -5,7 +5,6 @@ store the fixed images.
 """
 
 import os
-import re
 from PIL import Image
 
 # The source image directory
