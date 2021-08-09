@@ -11,7 +11,8 @@ from PIL import Image
 image_dir = "/home/user/images"
 
 # The extension of the target images
-extension = ".jpg"
+old_extension = ".tiff"
+new_extension = ".jpeg"
 
 # Create directory for the modified images if it does not exist
 if not os.path.isdir("/opt/images"):
@@ -22,10 +23,13 @@ if not os.path.isdir("/opt/images"):
 os.chdir(image_dir)
 dir_content = os.listdir()
 
-# Iterate through all files in the image directory and manipulate all files with
+# Iterate through all content in the image directory and manipulate all files with
 # the matching extension.
 for item in dir_content:
-    if os.path.isfile(item) and item.endswith(extension):
+    if os.path.isfile(item) and item.endswith(old_extension):
         print("Processing image:", item)
         im = Image.open(item)
-        im.rotate(90).resize((640,480)).save(os.path.join("/opt/images", item))
+        
+        # Create new filename by splitting, splicing old extension and appending the new one
+        new_name = "".join(item.split(".")[:-1]) + new_extension
+        im.rotate(90).resize((128,128)).save(os.path.join("/opt/images", new_name))
