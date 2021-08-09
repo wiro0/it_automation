@@ -8,7 +8,7 @@ import os
 from PIL import Image
 
 # The source image directory
-image_dir = "/home/pi/git/it_automation/week1/images"
+image_dir = "/home/user/images"
 
 new_extension = ".jpg"
 
