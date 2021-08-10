@@ -15,6 +15,9 @@ for item in result:
             text = file.readlines()
             data = {}
             for num, line in enumerate(text):
+                if num > 3:
+                    data["feedback"] = data.get(feedback) + " " + line
+                    continue
                 data[keys[num]] = line
         file.close()
     print("Sending data")
