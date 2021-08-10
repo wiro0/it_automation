@@ -18,11 +18,14 @@ for item in result:
                 data[keys[num]] = line
         file.close()
     print("Sending data")
-    for i in range(5):
-        response = requests.post("http://<IP>/feedback", data)
-        if response.status_code == "201":
-            print("Sending data successfull")
-            break
+    for retry in range(5):
+        response = requests.post("http://<IP>/feedback", json=data)
+        if response.status_code != "201":
+            if retry > 3:
+                print("Could not send data from file:", item)
+                break
+            continue
         else:
-            print("Sending data error.")
+            print("... successfull")
+            break
     
