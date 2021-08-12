@@ -21,8 +21,8 @@ for item in result:
     for i in range(5):
         response = requests.post("http://<IP>/feedback", data)
         if response.status_code == "201":
-            print("Sending data successfull")
+            print("... successfull")
             break
         else:
-            print("Sending data error.")
+            print("... error")
     
