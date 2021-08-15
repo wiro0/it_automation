@@ -7,14 +7,12 @@ into a dictionary and send it to a web service
 import os
 import requests
 
-keys = ["title", "name", "date", "feedback"]
 
-os.chdir("/data/feedback")
-result = os.listdir()
-
-for item in result:
+def read_file(item):
+    """
+    Read the feedback data from a text file and return as a dictionary
+    """
     if os.path.isfile(item):
-        # Read the feedback data from the text files and turn into a dictionary
         print("Processing file:", item)
         with open (item, "r") as file:
             text = file.readlines()
@@ -23,12 +21,17 @@ for item in result:
                 line = line.strip()
                 # If-condition to append all lines 3+ to key "feedback"
                 if num > 3:
-                    data["feedback"] = data.get(feedback) + " " + line
+                    data["feedback"] = data.get(feedback, "") + " " + line
                     continue
                 data[keys[num]] = line
         file.close()
+        return data
 
-    # Send dictionary to django web service via requests.post
+
+def send_feedback(data):
+    """
+    Send a dictionary to django web service via requests.post
+    """
     print("Sending data ...")
     for retry in range(5):
         response = requests.post("http://35.239.10.159/feedback/", data=data)
@@ -40,3 +43,12 @@ for item in result:
         else:
             print("Successfull")
             break
+            
+
+keys = ["title", "name", "date", "feedback"]
+
+os.chdir("/data/feedback")
+result = os.listdir()
+
+for item in result:
+    send_feedback(read_file(item))
