@@ -28,7 +28,7 @@ def read_file(item):
         return data
 
 
-def send_feedback(data):
+def send_feedback(data, item):
     """
     Send a dictionary to django web service via requests.post
     """
@@ -51,4 +51,4 @@ os.chdir("/data/feedback")
 result = os.listdir()
 
 for item in result:
-    send_feedback(read_file(item))
+    send_feedback(read_file(item), item)
