@@ -36,10 +36,12 @@ dir_content = os.listdir()
 
 # Iterate through the files in the directory, process and store as new files
 for item in dir_content:
-    if os.path.isfile(item) and not item.startswith("."):
-        print("Processing image:", item)
-        im = Image.open(item)
-        im = im.rotate(90).resize((128,128)).convert("RGB")
+    if not os.path.isfile(item) or item.startswith("."):
+        continue
+    print("Processing image:", item)
+    im = Image.open(item)
+    im = im.rotate(90).resize((128,128)).convert("RGB")
 
-        new_name = os.path.splitext(item)[0] + new_extension
-        im.save(os.path.join("/opt/icons", new_name))
+    new_name = os.path.splitext(item)[0] + new_extension
+    im.save(os.path.join("/opt/icons", new_name))
+    im.close()
