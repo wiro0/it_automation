@@ -16,14 +16,16 @@ if __name__ == "__main__":
             continue
         with open(item, "r") as file:
             lines = file.readlines()
-            item_list.append(lines[:1]
+            item_list.append(lines[0])
             item_list.append("<br/>")
+            item_list.append(lines[1])
+            item_list.append("<br/><br/>")
     # pdf report data
     attachment = "/tmp/processed.pdf"
     title = "Processed Update on {}".format(datetime.datetime.now())
-    paragraph = "test"
+    paragraph = "".join(item_list)
     # generate pdf report
-    report.generate_report(attachment, title, paragraph)
+    reports.generate_report(attachment, title, paragraph)
 
     # email data
     sender = "automation@example.com"
