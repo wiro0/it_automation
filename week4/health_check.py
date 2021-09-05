@@ -3,7 +3,7 @@
 import shutil
 import psutil
 import os
-import subprocess
+import re
 import emails
 
 
@@ -29,8 +29,9 @@ def cpu_usage():
 
 def localhost_present():
     """Check for localhost"""
-    res = subprocess.run(["grep", "127.0.0.1", "/etc/hosts"])
-    return res.returncode != 0
+    with open("/etc/hosts", "r") as file:
+        text = file.read()
+        return re.search(r"127.0.0.1", text)
 
 
 def main():
