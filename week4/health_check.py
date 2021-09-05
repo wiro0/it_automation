@@ -42,12 +42,9 @@ def main():
         (localhost_present(), "Error - localhost cannot be resolved to 127.0.0.1")
     ]
 
-    everything_ok = True
-
     for check, subject in checks:
         if check:
-            everything_ok = False
-            error_message = emails.email_generate(sender, recipient, subject, body)
+            error_message = emails.generate_email(sender, recipient, subject, body)
             emails.send_email(error_message)
 
 
