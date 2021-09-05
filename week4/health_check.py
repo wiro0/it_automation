@@ -18,8 +18,8 @@ def disk_usage():
 
 
 def free_memory():
-    """Return True, if the current RAM is less than 20%"""
-    return psutil.virtual_memory().free / (2**20) > 500
+    """Return True, if the current RAM is less than 500MB"""
+    return psutil.virtual_memory().free / (2**20) < 500
 
 
 def cpu_usage():
@@ -37,7 +37,7 @@ def main():
 
     checks = [
         (cpu_usage(), "Error - CPU usage is over 80%"),
-        (disk_usage(), "Error - CPU usage is over 80%"),
+        (disk_usage(), "Error - Available disk space is less than 20%"),
         (free_memory(), "Error - Available memory is less than 500MB"),
         (localhost_present(), "Error - localhost cannot be resolved to 127.0.0.1")
     ]
