@@ -3,8 +3,8 @@
 import shutil
 import psutil
 import os
-import time
 import subprocess
+import emails
 
 
 # email data
@@ -51,6 +51,4 @@ def main():
             emails.send_email(error_message)
 
 
-while True:
-    main()
-    time.sleep(60)
+main()

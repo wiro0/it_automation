@@ -9,10 +9,9 @@ descriptions_path = os.path.expanduser("~/supplier-data/descriptions")
 ip = socket.gethostbyname(socket.gethostname())
 url = "".join(["http://", ip, "/fruits"])
 
-def generate_dictionary(item):
 
+def generate_dictionary(item):
     fruit_dic = {}
-    
     with open(item, "r") as file:
         lines = file.readlines()
         fruit_dic["name"] = lines[0]
