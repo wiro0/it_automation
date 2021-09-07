@@ -7,7 +7,7 @@ import socket
 
 descriptions_path = os.path.expanduser("~/supplier-data/descriptions")
 ip = socket.gethostbyname(socket.gethostname())
-url = "".join(["http://", ip, "/fruits"])
+url = "".join(["http://", ip, "/fruits/"])
 
 
 def generate_dictionary(item):

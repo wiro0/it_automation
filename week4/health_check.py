@@ -3,7 +3,6 @@
 import shutil
 import psutil
 import os
-import re
 import emails
 
 
@@ -31,7 +30,7 @@ def localhost_present():
     """Check for localhost"""
     with open("/etc/hosts", "r") as file:
         text = file.read()
-        return re.search(r"127.0.0.1", text)
+    return "127.0.0.1" not in text
 
 
 def main():
