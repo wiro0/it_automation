@@ -6,7 +6,9 @@ import smtplib
 import getpass
 
 
-# smtpserver="smtp.gmail.com:587" # TLS port
+"""
+smtpserver="smtp.gmail.com:587" # TLS port
+"""
 smtpserver="smtp.gmail.com:465" # SSL port
 
 sender = "sender@example.com"
@@ -23,7 +25,10 @@ msg.set_content(body)
 print(msg)
 
 mail_server = smtplib.SMTP_SSL(smtpserver)
-# mail_server.set_debuglevel(1)
+
+"""
+mail_server.set_debuglevel(1)
+"""
 
 mail_pass = getpass.getpass('Password? ')
 
